@@ -9,6 +9,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+const allowedOrigins = [
+  'http://localhost:3000', // Local development
+  'https://analytics-dashboard-sigma-topaz.vercel.app' // Your actual Vercel URL
+];
+
 app.use(cors({
   origin: process.env.FRONTEND_URL, 
   credentials: true,
