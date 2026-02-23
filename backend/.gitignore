@@ -1,0 +1,13 @@
+# Dependency folders
+node_modules/
+
+# Environment variables (Crucial for security!)
+.env
+
+# Build folders
+dist/
+build/
+.next/
+
+# OS files
+.DS_Store
