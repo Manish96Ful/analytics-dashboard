@@ -268,26 +268,6 @@ After running `npm run seed`:
 
 ---
 
-## 🚀 Deployment (Render)
-
-1. Create a **PostgreSQL** database on [render.com](https://render.com)
-2. Copy the **Database URL**
-3. Create a **Web Service** pointing to the `backend` folder
-4. Set environment variables:
-
-```env
-DATABASE_URL=postgresql://...  ← from Render PostgreSQL
-JWT_SECRET=your_secret_key
-NODE_ENV=production
-FRONTEND_URL=https://your-app.netlify.app
-```
-
-5. Build command: `npm install`
-6. Start command: `npm start`
-7. After deploy, open Shell and run: `npm run seed`
-
----
-
 ## 📈 Scaling to 1M Writes/Minute
 
 Current architecture handles small to medium traffic. For 1M writes/minute:
