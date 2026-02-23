@@ -8,11 +8,34 @@ const analyticsRoutes = require('./routes/analytics');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5173',
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
-  credentials: true
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    }
+    if (
+      origin.endsWith('.vercel.app') ||
+      origin.endsWith('.netlify.app') ||
+      origin.endsWith('.onrender.com') ||
+      origin.endsWith('.railway.app')
+    ) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+app.options('*', cors());
 
 app.use(express.json());
 // Health check
